@@ -6,9 +6,14 @@ import { WeddingTemplateData } from "./types";
 interface WeddingTemplateProps {
   core: CoreInvitationData;
   data: WeddingTemplateData;
+  guestName?: string;
 }
 
-export default function WeddingTemplate({ core, data }: WeddingTemplateProps) {
+export default function WeddingTemplate({
+  core,
+  data,
+  guestName,
+}: WeddingTemplateProps) {
   return (
     <main className="min-h-screen  text-center p-6">
       {/* Cover */}
@@ -23,6 +28,12 @@ export default function WeddingTemplate({ core, data }: WeddingTemplateProps) {
         <h1 className="text-3xl font-bold">{core.title}</h1>
         <p className="">{core.location}</p>
       </section>
+
+      {guestName && (
+        <p className="text-sm text-gray-500">
+          Kepada Yth. <strong>{guestName}</strong>
+        </p>
+      )}
 
       {/* Couple */}
       <section className="mb-10">
