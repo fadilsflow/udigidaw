@@ -1,50 +1,59 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Heart } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { ChevronRight } from "lucide-react";
 
 export default function HeroSection() {
   return (
-    <section className="py-20">
-      <div className="relative z-10 mx-auto w-full max-w-2xl px-6 lg:px-0">
-        <div className="relative text-center">
-          <Logo className="mx-auto" />
-          <h1 className="mx-auto mt-16 max-w-xl text-balance text-5xl font-medium">
-            Solusi Digital Pernikahan Impian
-          </h1>
+    <>
+      <main className="overflow-x-hidden">
+        <section>
+          <div className="py-24 md:pb-32 lg:pb-36 lg:pt-42">
+            <div className="relative mx-auto flex max-w-7xl flex-col px-6 lg:block lg:px-12">
+              <div className="mx-auto max-w-lg text-center lg:ml-0 lg:max-w-full lg:text-left">
+                <h1 className="mt-8 max-w-2xl text-balance text-5xl md:text-6xl lg:mt-16 xl:text-7xl">
+                  Solusi Digital Pernikahan Impian
+                </h1>
+                <p className="mt-8 max-w-2xl text-balance text-lg">
+                  Highly customizable components for building modern websites
+                  and applications you mean it.
+                </p>
 
-          <p className="text-muted-foreground mx-auto mb-6 mt-4 text-balance text-xl">
-            Solusi digital pernikahan impian dengan fitur-fitur yang lengkap.
-          </p>
-
-          <div className="flex flex-col items-center gap-2 *:w-full sm:flex-row sm:justify-center sm:*:w-auto">
-            <Button asChild variant="default">
-              <Link href="#link">
-                <span className="text-nowrap">Buat Sekarang</span>
-              </Link>
-            </Button>
-            <Button asChild variant="ghost">
-              <Link href="#link">
-                <span className="text-nowrap">Lihat Demo</span>
-              </Link>
-            </Button>
+                <div className="mt-12 flex flex-col items-center justify-center gap-2 sm:flex-row lg:justify-start">
+                  <Button
+                    asChild
+                    size="lg"
+                    className="h-12 rounded-full pl-5 pr-3 text-base"
+                  >
+                    <Link href="#link">
+                      <span className="text-nowrap">Start Building</span>
+                      <ChevronRight className="ml-1" />
+                    </Link>
+                  </Button>
+                  <Button
+                    key={2}
+                    asChild
+                    size="lg"
+                    variant="ghost"
+                    className="h-12 rounded-full px-5 text-base hover:bg-zinc-950/5 dark:hover:bg-white/5"
+                  >
+                    <Link href="#link">
+                      <span className="text-nowrap">Request a demo</span>
+                    </Link>
+                  </Button>
+                </div>
+              </div>
+            </div>
+            <div className="aspect-2/3 absolute inset-1 -z-10 overflow-hidden rounded-3xl border border-black/10 lg:aspect-video lg:rounded-[3rem] dark:border-white/5">
+              <video
+                autoPlay
+                loop
+                className="size-full object-cover opacity-50 invert dark:opacity-35 dark:invert-0 dark:lg:opacity-75"
+                src="https://ik.imagekit.io/lrigu76hy/tailark/dna-video.mp4?updatedAt=1745736251477"
+              ></video>
+            </div>
           </div>
-        </div>
-      </div>
-    </section>
+        </section>
+      </main>
+    </>
   );
 }
-
-const Logo = ({ className }: { className?: string }) => (
-  <div
-    aria-hidden
-    className={cn(
-      "border-background bg-linear-to-b rounded-lg relative flex size-9 translate-y-0.5 items-center justify-center border from-blue-300 to-blue-600 shadow-lg shadow-black/20 ring-1 ring-black/10",
-      className
-    )}
-  >
-    <Heart className="mask-b-from-25% size-6 fill-white stroke-white drop-shadow-sm" />
-    <Heart className="absolute inset-0 m-auto size-6 fill-white stroke-white opacity-65 drop-shadow-sm" />
-    <div className="z-1 h-4.5 absolute inset-2 m-auto w-px translate-y-px rounded-full bg-black/10"></div>
-  </div>
-);

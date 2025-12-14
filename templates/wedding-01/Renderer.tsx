@@ -107,21 +107,16 @@ export default function WeddingTemplate({
         {/* Content */}
         <div className="relative z-10 flex flex-col items-center justify-center w-full h-full text-center p-8">
           <div className="max-w-md w-full space-y-8 animate-in fade-in duration-1000">
-            <Badge
-              variant="outline"
-              className="text-lg px-4 py-1 uppercase tracking-widest border-white text-white"
-            >
-              Undangan Pernikahan
-            </Badge>
-
             <div className="space-y-2">
+              <p className="text-md px-4 py-1 uppercase tracking-widest border-white text-white">
+                The Wedding
+              </p>
               <h1 className="text-5xl font-serif text-white">
-                {data.groomName}
+                {data.groomName} & {data.brideName}
               </h1>
-              <span className="text-3xl font-serif text-white/80">&</span>
-              <h1 className="text-5xl font-serif text-white">
-                {data.brideName}
-              </h1>
+              <p className="text-sm text-white">
+                {toLocaleDate(core.eventDate)}
+              </p>
             </div>
 
             {guestName && (
