@@ -27,6 +27,11 @@ export const WeddingTemplateSchema = {
       id: "event",
       label: "Detail Acara",
       fields: {
+        eventName: {
+          type: "text",
+          label: "Nama Acara",
+          required: true,
+        },
         eventTime: {
           type: "time",
           label: "Waktu Acara",

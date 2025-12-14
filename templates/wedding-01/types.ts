@@ -1,7 +1,11 @@
 export interface WeddingTemplateData {
   groomName: string;
   brideName: string;
-  eventTime: string;
-  venueName?: string;
+  events: {
+    name: string;
+    date: string;
+    time: string;
+    venueName?: string;
+  }[];
   photos?: string[];
 }

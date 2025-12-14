@@ -14,11 +14,11 @@ const DUMMY_INVITATIONS: InvitationEntity[] = [
     templateId: "wedding-01",
 
     coreData: CoreInvitationZodSchema.parse({
-      title: "Pernikahan Fadil & Aisyah",
-      slug: "fadil-aisyah",
+      title: "Pernikahan Joko & Aisyah",
+      slug: "joko-aisyah",
       eventDate: "2025-06-12T09:00:00.000Z",
       timezone: "Asia/Jakarta",
-      location: "Jakarta",
+      location: "JL. Kebon Jeruk No. 123, Jakarta, Indonesia",
       coverImage:
         "https://images.unsplash.com/photo-1520857014576-2c4f4c972b57",
       status: "published",
@@ -26,10 +26,22 @@ const DUMMY_INVITATIONS: InvitationEntity[] = [
     }),
 
     templateData: {
-      groomName: "Atmin 1",
-      brideName: "Atmin 2",
-      eventTime: "09:00 WIB",
-      venueName: "Gedung Serbaguna Jakarta",
+      groomName: "Joko",
+      brideName: "Aisyah",
+      events: [
+        {
+          name: "Acara Pernikahan",
+          date: "2025-06-12",
+          time: "09:00 WIB",
+          venueName: "JL. Kebon Jeruk No. 123, Jakarta, Indonesia",
+        },
+        {
+          name: "Acara Pernikahan",
+          date: "2025-06-12",
+          time: "09:00 WIB",
+          venueName: "JL. Kebon Jeruk No. 123, Jakarta, Indonesia",
+        },
+      ],
       photos: [
         "/file.svg",
         "/file.svg",
@@ -39,7 +51,7 @@ const DUMMY_INVITATIONS: InvitationEntity[] = [
         "/file.svg",
       ],
     },
-    
+
     createdAt: new Date("2025-01-01T00:00:00.000Z"),
     updatedAt: new Date("2025-01-01T00:00:00.000Z"),
   },
