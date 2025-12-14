@@ -10,9 +10,14 @@
     "format": "biome format --write"
   },
   "dependencies": {
+    "@radix-ui/react-accordion": "^1.2.12",
+    "@radix-ui/react-aspect-ratio": "^1.1.8",
+    "@radix-ui/react-label": "^2.1.8",
+    "@radix-ui/react-separator": "^1.1.8",
     "@radix-ui/react-slot": "^1.2.4",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "embla-carousel-react": "^8.6.0",
     "lucide-react": "^0.561.0",
     "next": "16.0.10",
     "react": "19.2.1",

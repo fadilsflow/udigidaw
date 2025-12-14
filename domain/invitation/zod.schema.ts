@@ -7,7 +7,7 @@ export const CoreInvitationZodSchema = z.object({
   eventDate: z.string().datetime(),
   timezone: z.string().optional().default("Asia/Jakarta"),
   location: z.string().optional(),
-  coverImage: z.string().url().optional(),
+  coverImage: z.string().optional(),
   status: z.enum(["draft", "published", "archived"]).default("draft"),
   visibility: z.enum(["public", "private"]).default("public"),
 });

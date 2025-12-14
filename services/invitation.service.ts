@@ -19,8 +19,7 @@ const DUMMY_INVITATIONS: InvitationEntity[] = [
       eventDate: "2025-06-12T09:00:00.000Z",
       timezone: "Asia/Jakarta",
       location: "JL. Kebon Jeruk No. 123, Jakarta, Indonesia",
-      coverImage:
-        "https://images.unsplash.com/photo-1520857014576-2c4f4c972b57",
+      coverImage: "/wedding-left.jpeg",
       status: "published",
       visibility: "public",
     }),
