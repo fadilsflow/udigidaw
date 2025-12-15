@@ -312,10 +312,7 @@ export default function WeddingTemplate({
             </h2>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
               {data.events.map((event, idx) => (
-                <Card
-                  key={idx}
-                  className="p-2  border rounded-3xl shadow-none"
-                >
+                <Card key={idx} className="p-2  border rounded-3xl shadow-none">
                   <CardContent className="bg-muted rounded-2xl border w-full  relative p-8  text-center space-y-6">
                     {/* Title */}
                     <CardTitle className="font- text-4xl font-script tracking-wide">
@@ -368,9 +365,7 @@ export default function WeddingTemplate({
                         {event.venueAddress}
                       </p>
                     )}
-                    <Button
-                      className="w-full mt-4 rounded-full "
-                    >
+                    <Button className="w-full mt-4 rounded-full ">
                       Buka Google Maps
                     </Button>
                   </CardFooter>
@@ -394,9 +389,10 @@ export default function WeddingTemplate({
                       <div className="p-1">
                         <Card className="border-0 shadow-none">
                           <CardContent className="flex aspect-square items-center justify-center p-0 rounded-xl overflow-hidden">
-                            <img
+                            <Image
                               src={src}
                               alt={`Gallery ${idx}`}
+                              fill
                               className="object-cover w-full h-full"
                             />
                           </CardContent>
