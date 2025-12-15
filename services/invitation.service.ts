@@ -16,7 +16,7 @@ const DUMMY_INVITATIONS: InvitationEntity[] = [
     coreData: CoreInvitationZodSchema.parse({
       title: "Pernikahan Joko & Aisyah",
       slug: "joko-aisyah",
-      eventDate: "2025-06-12T09:00:00.000Z",
+      eventDate: "2026-06-12T09:00:00.000Z",
       timezone: "Asia/Jakarta",
       location: "JL. Kebon Jeruk No. 123, Jakarta, Indonesia",
       coverImage: "/wedding-left.jpeg",
@@ -25,20 +25,35 @@ const DUMMY_INVITATIONS: InvitationEntity[] = [
     }),
 
     templateData: {
-      groomName: "Joko",
-      brideName: "Aisyah",
+      groomNickname: "Joko",
+      groomName: "Joko Kurniawan S.Kom",
+      groomImage: "/template1/man.jpeg",
+      groomParents: {
+        father: "Bpk. Suhendra",
+        mother: "Ibu Siti",
+      },
+      brideNickname: "Aisyah",
+      brideName: "Aisyah Nur Indah S.Pd",
+      brideImage: "/template1/girl.jpeg",
+      brideParents: {
+        father: "Bpk. Abdullah",
+        mother: "Ibu Aminah",
+      },
+
       events: [
         {
           name: "Acara Pernikahan",
           date: "2025-06-12",
-          time: "09:00 WIB",
-          venueName: "JL. Kebon Jeruk No. 123, Jakarta, Indonesia",
+          time: "09:00 - 12:00",
+          venueName: "Rumah Joko",
+          venueAddress: "JL. Kebon Jeruk No. 123, Jakarta, Indonesia",
         },
         {
-          name: "Acara Pernikahan",
-          date: "2025-06-12",
-          time: "09:00 WIB",
-          venueName: "JL. Kebon Jeruk No. 123, Jakarta, Indonesia",
+          name: "Resepsi",
+          date: "2025-06-13",
+          time: "09:00 - 12:00",
+          venueName: "Rumah Aisyah",
+          venueAddress: "JL. Kebon Jeruk No. 123, Jakarta, Indonesia",
         },
       ],
       photos: [

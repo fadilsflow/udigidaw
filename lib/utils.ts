@@ -13,3 +13,22 @@ export function toLocaleDate(date: string) {
     year: "numeric",
   });
 }
+
+export function getDayNumber(date: string) {
+  return new Date(date).getDay();
+}
+export function getDayName(date: string) {
+  return new Date(date).toLocaleDateString("id-ID", {
+    weekday: "long",
+  });
+}
+
+export function getMonthName(date: string) {
+  return new Date(date).toLocaleDateString("id-ID", {
+    month: "long",
+  });
+}
+
+export function getYear(date: string) {
+  return new Date(date).getFullYear();
+}
