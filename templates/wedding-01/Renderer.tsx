@@ -85,9 +85,9 @@ export default function WeddingTemplate({
   ];
 
   return (
-    <main className="flex flex-col md:flex-row min-h-screen w-full bg-slate-50 font-sans text-slate-900">
+    <main className="flex flex-col  min-h-screen w-full bg-slate-50 font-sans text-slate-900">
       {/* LEFT SIDE (Desktop Only) */}
-      <section className="fixed top-0 w-full h-screen z-0 md:sticky md:top-0 md:flex md:w-2/3 md:h-screen md:overflow-hidden md:z-auto border-r">
+      <section className="fixed top-0 w-full h-screen z-0 md:sticky md:top-0 md:flex md:h-screen md:overflow-hidden md:z-auto border-r">
         {/* Background Image */}
         {core.coverImage && (
           <div className="absolute inset-0 z-0">
@@ -108,32 +108,34 @@ export default function WeddingTemplate({
         <div className="relative z-10 flex flex-col items-center justify-center w-full h-full text-center p-8">
           <div className="max-w-md w-full space-y-8 animate-in fade-in duration-1000">
             <div className="space-y-2">
-              <p className="text-md px-4 py-1 uppercase tracking-widest border-white text-white">
-                The Wedding
+              <p className="text-white text-md">
+                you are invited to our wedding
               </p>
               <h1 className="text-5xl font-serif text-white">
                 {data.groomName} & {data.brideName}
               </h1>
-              <p className="text-sm text-white">
+              <p className="text-white text-2xl">
                 {toLocaleDate(core.eventDate)}
               </p>
             </div>
 
             {guestName && (
-              <div className="mt-8 p-6 bg-muted rounded-xl shadow-sm">
-                <p className="text-sm text-slate-500 mb-2 uppercase tracking-wide">
+              <div className="mt-8 p-6 bg-white/20 rounded-xl shadow-sm">
+                <p className="text-sm text-white mb-2  tracking-wide">
                   Kepada Yth. Bapak/Ibu/Saudara/i
                 </p>
-                <div className="text-2xl font-semibold text-slate-800 wrap-break-word">
+                <div className="text-2xl font-semibold text-white wrap-break-word">
                   {guestName}
                 </div>
-                <p className="text-xs text-slate-400 mt-2 italic">
+                <p className="text-xs text-white mt-2 italic">
                   *Mohon maaf apabila ada kesalahan penulisan nama/gelar
                 </p>
               </div>
             )}
             <Link href={"#content"}>
-              <Button className="md:hidden">Buka Undangan</Button>
+              <Button variant={"outline"} className="rounded-full ">
+                Buka Undangan
+              </Button>
             </Link>
           </div>
         </div>
@@ -142,64 +144,55 @@ export default function WeddingTemplate({
       {/* RIGHT SIDE (Mobile / Scrollable Content) */}
       <section
         id="content"
-        className="mt-[800px] md:mt-0 relative z-30 w-full md:w-2/3 min-h-screen bg-white"
+        className="mt-[800px] md:mt-0 relative z-30 w-full min-h-screen bg-white"
       >
         {/* HERO SECTION (Mobile) - Simplified version of Left Side */}
         <div className="flex flex-col justify-center items-center min-h-screen p-6 text-center bg-slate-50 relative ">
           <div className="absolute inset-0 z-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
-          <div className="mt-20 z-10 w-full space-y-6">
-            <span className="mb-4 font-serif">The Wedding Of</span>
+          <div className="mt-20 z-10 space-y-6">
+            <span className="mb-4 font-serif">We Are Getting Married</span>
             <div className="font-serif text-5xl text-slate-800 space-y-2">
-              <div>{data.groomName}</div>
-              <div className="text-xl text-slate-800">&</div>
-              <div>{data.brideName}</div>
+              <div>
+                {data.groomName} <span>&</span>
+                {data.brideName}
+              </div>
             </div>
 
-            <p>{toLocaleDate(core.eventDate)}</p>
-          </div>
-        </div>
+            <div className="space-y-6 text-center">
+              <div className="text-lg font-medium text-slate-700">
+                {toLocaleDate(core.eventDate)}
+              </div>
 
-        {/* MAIN CONTENT CONTAINER */}
-        <div className="flex flex-col gap-10 p-6 md:p-10 pb-20">
-          {/* COUNTDOWN SECTION */}
-          <div className="space-y-6 text-center">
-            <h2 className="text-sm uppercase tracking-widest text-slate-500">
-              Menuju Hari Bahagia
-            </h2>
-            <div className="text-lg font-medium text-slate-700">
-              {toLocaleDate(core.eventDate)}
-            </div>
-
-            <div className="grid grid-cols-4 gap-2">
-              {[
-                { label: "Hari", value: "51" },
-                { label: "Jam", value: "20" },
-                { label: "Menit", value: "03" },
-                { label: "Detik", value: "45" },
-              ].map((item, i) => (
-                <Card key={i} className="border-slate-200 shadow-sm">
-                  <CardContent className="p-3 flex flex-col items-center justify-center">
+              <div className="grid grid-cols-4 gap-2">
+                {[
+                  { label: "Hari", value: "51" },
+                  { label: "Jam", value: "20" },
+                  { label: "Menit", value: "03" },
+                  { label: "Detik", value: "45" },
+                ].map((item, i) => (
+                  <div className="p-3 flex flex-col items-center justify-center bg-muted">
                     <span className="text-2xl md:text-3xl font-bold text-slate-800">
                       {item.value}
                     </span>
                     <span className="text-[10px] uppercase tracking-wider text-slate-500">
                       {item.label}
                     </span>
-                  </CardContent>
-                </Card>
-              ))}
+                  </div>
+                ))}
+              </div>
+
+              <Button
+                className="w-full rounded-full gap-2 transition-all hover:scale-105"
+                size="lg"
+              >
+                <CalendarHeart className="w-4 h-4" /> Simpan Tanggal
+              </Button>
             </div>
-
-            <Button
-              className="w-full rounded-full gap-2 transition-all hover:scale-105"
-              size="lg"
-            >
-              <CalendarHeart className="w-4 h-4" /> Simpan Tanggal
-            </Button>
           </div>
+        </div>
 
-          <Separator />
-
+        {/* MAIN CONTENT CONTAINER */}
+        <div className="flex flex-col gap-10 p-6 md:p-10 pb-20">
           {/* QUOTES SECTION */}
           <div className="text-center space-y-6 py-6">
             <Quote className="w-8 h-8 text-slate-300 mx-auto" />

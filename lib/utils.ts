@@ -7,6 +7,7 @@ export function cn(...inputs: ClassValue[]) {
 
 export function toLocaleDate(date: string) {
   return new Date(date).toLocaleDateString("id-ID", {
+    weekday: "long",
     day: "numeric",
     month: "long",
     year: "numeric",
