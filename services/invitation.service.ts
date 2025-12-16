@@ -57,12 +57,10 @@ const DUMMY_INVITATIONS: InvitationEntity[] = [
         },
       ],
       photos: [
-        "/file.svg",
-        "/file.svg",
-        "/file.svg",
-        "/file.svg",
-        "/file.svg",
-        "/file.svg",
+        "/template1/a.jpeg",
+        "/template1/b.jpeg",
+        "/template1/c.jpeg",
+        "/template1/d.jpeg",
       ],
     },
 

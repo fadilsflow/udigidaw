@@ -52,6 +52,7 @@ import {
 } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
+import { HeroVideoDialog } from "@/components/ui/hero-video-dialog";
 
 interface WeddingTemplateProps {
   core: CoreInvitationData;
@@ -64,35 +65,14 @@ export default function WeddingTemplate({
   data,
   guestName,
 }: WeddingTemplateProps) {
-  // Dummy Love Story Data (Since not in schema yet based on previous file read, we keep it static or use data if available)
-  // Assuming for now we stick to the provided schema, so we keep the Love Story static or hide it if no data.
-  // The user asked to "ubah placeholder ... dengan shadcn componen".
-  // I will make the Love Story section use Accordion with the static text matching the original placeholder but styled.
-
-  const loveStories = [
-    {
-      title: "Pertemuan",
-      content:
-        "Kami bertemu pertama kali di sebuah acara kampus. Tatapan pertama yang tak sengaja, menjadi awal dari segalanya.",
-    },
-    {
-      title: "Pendekatan",
-      content:
-        "Melalui teman dekat, kami mulai saling mengenal. Berbagi cerita, tawa, dan mimpi-mimpi kecil bersama.",
-    },
-    {
-      title: "Lamaran",
-      content:
-        "Di bawah langit senja, sebuah janji terucap untuk melangkah ke jenjang yang lebih serius bersama selamanya.",
-    },
-    {
-      title: "Pernikahan",
-      content:
-        "Hari ini, kami menyatukan dua hati dalam ikatan suci pernikahan, memohon doa restu untuk perjalanan panjang kami.",
-    },
-  ];
-
   const [showDock, setShowDock] = useState(false);
+  const [selectedPhoto, setSelectedPhoto] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (data.photos && data.photos.length > 0) {
+      setSelectedPhoto(data.photos[0]);
+    }
+  }, [data.photos]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -143,10 +123,10 @@ export default function WeddingTemplate({
   }, [core.eventDate]);
 
   return (
-    <main className="relative  flex flex-col  min-h-screen w-full bg-slate-50 font-sans text-slate-900">
+    <main className="relative flex flex-col md:flex-row min-h-screen w-full bg-slate-50 font-sans text-slate-900">
       <Dock visible={showDock} />
       {/* Cover Section */}
-      <section className="fixed top-0 w-full h-screen z-0 md:sticky md:top-0 md:flex md:h-screen md:overflow-hidden md:z-auto border-r">
+      <section className="fixed top-0 w-full h-screen z-0 md:sticky md:top-0 md:flex md:w-1/2 md:h-screen md:overflow-hidden md:z-auto border-r">
         {/* Background Image */}
         {core.coverImage && (
           <div className="absolute inset-0 z-0">
@@ -170,7 +150,7 @@ export default function WeddingTemplate({
               <p className="text-white text-md">
                 Kami mengundang Anda ke Pernikahan
               </p>
-              <h1 className="text-6xl font-serif text-white">
+              <h1 className="text-6xl font-bricolage text-white">
                 {data.groomNickname} & {data.brideNickname}
               </h1>
             </div>
@@ -189,7 +169,11 @@ export default function WeddingTemplate({
               </div>
             )}
             <Link href={"#content"}>
-              <Button variant={"outline"} className="rounded-full " size={"lg"}>
+              <Button
+                variant={"outline"}
+                className="rounded-full md:hidden "
+                size={"lg"}
+              >
                 Buka Undangan
               </Button>
             </Link>
@@ -200,14 +184,14 @@ export default function WeddingTemplate({
       {/* Scrollable Content */}
       <section
         id="content"
-        className="mt-[800px] md:mt-0 relative z-30 w-full min-h-screen bg-white"
+        className="mt-[800px] md:mt-0 md:w-1/2 relative z-30 w-full min-h-screen bg-white"
       >
         {/* Hero Section (Mobile) - Simplified version of Left Side */}
         <div className="flex flex-col justify-center items-center min-h-screen p-6 text-center bg-slate-50 relative ">
           <div className="absolute inset-0 z-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
           <div className="mt-20 z-10 space-y-6">
-            <span className="mb-4 font-serif">We Are Getting Married</span>
-            <div className="font-serif text-5xl text-slate-800 space-y-2">
+            <span className="mb-4 font-bricolage">We Are Getting Married</span>
+            <div className="font-bricolage text-5xl text-slate-800 space-y-2">
               <div>
                 {data.groomNickname} <span>&</span>
                 {data.brideNickname}
@@ -255,7 +239,7 @@ export default function WeddingTemplate({
         <div className="flex flex-col gap-10 p-6 md:p-10 pb-20">
           {/* COUPLE DETAILS */}
           <div id="couple" className="space-y-8 scroll-mt-24">
-            <h2 className="text-center text-2xl font-serif text-slate-800">
+            <h2 className="text-center text-2xl font-bricolage text-slate-800">
               Mempelai
             </h2>
             <div className="flex items-center justify-center gap-4 ">
@@ -271,7 +255,9 @@ export default function WeddingTemplate({
                       />
                     </div>
                   )}
-                  <h2 className="font-serif text-2xl">{data.groomNickname}</h2>
+                  <h2 className="font-bricolage text-2xl">
+                    {data.groomNickname}
+                  </h2>
                   <p>{data.groomName}</p>
                   <p>
                     Putra dari {data.groomParents?.father || "Bpk. Fulan"} &{" "}
@@ -292,7 +278,9 @@ export default function WeddingTemplate({
                       />
                     </div>
                   )}
-                  <h2 className="font-serif text-2xl">{data.brideNickname}</h2>
+                  <h2 className="font-bricolage text-2xl">
+                    {data.brideNickname}
+                  </h2>
                   <p>{data.brideName}</p>
                   <p>
                     Putri dari {data.brideParents?.father || "Bpk. Fulan"} &{" "}
@@ -307,13 +295,13 @@ export default function WeddingTemplate({
 
           {/* EVENTS */}
           <div id="events" className="space-y-6 scroll-mt-24">
-            <h2 className="text-center text-2xl font-serif text-slate-800">
+            <h2 className="text-center text-2xl font-bricolage text-slate-800">
               Rangkaian Acara
             </h2>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            <div className="flex flex-col gap-4">
               {data.events.map((event, idx) => (
                 <Card key={idx} className="p-2  border rounded-3xl shadow-none">
-                  <CardContent className="bg-muted rounded-2xl border w-full  relative p-8  text-center space-y-6">
+                  <CardContent className="bg-muted rounded-2xl border w-full relative p-8  text-center space-y-6">
                     {/* Title */}
                     <CardTitle className="font- text-4xl font-script tracking-wide">
                       {event.name}
@@ -379,51 +367,83 @@ export default function WeddingTemplate({
           {/* GALLERY */}
           {data.photos && data.photos.length > 0 && (
             <div id="gallery" className="space-y-6 scroll-mt-24">
-              <h2 className="text-center text-2xl font-serif text-slate-800">
+              <h2 className="text-center text-2xl font-bricolage text-slate-800">
                 Galeri Kami
               </h2>
-              <Carousel className="w-full max-w-xs mx-auto">
-                <CarouselContent>
-                  {data.photos.map((src, idx) => (
-                    <CarouselItem key={idx}>
-                      <div className="p-1">
-                        <Card className="border-0 shadow-none">
-                          <CardContent className="flex aspect-square items-center justify-center p-0 rounded-xl overflow-hidden">
-                            <Image
-                              src={src}
-                              alt={`Gallery ${idx}`}
-                              fill
-                              className="object-cover w-full h-full"
-                            />
-                          </CardContent>
-                        </Card>
-                      </div>
-                    </CarouselItem>
-                  ))}
-                </CarouselContent>
-                <CarouselPrevious className="left-2" />
-                <CarouselNext className="right-2" />
-              </Carousel>
+
+              <div className="flex flex-col gap-4">
+                {/* Main Selected Image */}
+                <div className="relative w-full aspect-4/5 md:aspect-video rounded-2xl overflow-hidden shadow-lg border border-slate-100 bg-slate-100">
+                  {selectedPhoto ? (
+                    <Image
+                      src={selectedPhoto}
+                      alt="Selected gallery photo"
+                      fill
+                      className="object-cover transition-all duration-500 ease-in-out"
+                    />
+                  ) : (
+                    <div className="flex items-center justify-center h-full text-slate-400">
+                      Pilih foto di bawah
+                    </div>
+                  )}
+                </div>
+
+                {/* Scrollable Thumbnail Strip */}
+                <div className="w-full overflow-x-auto pb-4 pt-2 -mx-6 px-6 md:mx-0 md:px-0">
+                  <div className="flex gap-3 w-max">
+                    {data.photos.map((src, idx) => {
+                      // Alternate ratios: even -> 16:9 (Wide), odd -> 9:16 (Tall)
+                      // To make them look cool and align nicely, we can fix the height and let width adjust?
+                      // The prompt specifically asked for ratio variations.
+                      // Fixed height approach with aspect-ratio classes:
+                      const isWide = idx % 2 === 0;
+                      return (
+                        <button
+                          key={idx}
+                          onClick={() => setSelectedPhoto(src)}
+                          className={`relative group rounded-xl overflow-hidden transition-all duration-300 ${
+                            selectedPhoto === src
+                              ? "scale-95 shadow-md"
+                              : "hover:scale-95 opacity-80 hover:opacity-100"
+                          } ${
+                            isWide
+                              ? "w-48 aspect-video" // 16:9 equivalent
+                              : "w-28 aspect-4/5" // 9:16 equivalent
+                          }`}
+                        >
+                          <Image
+                            src={src}
+                            alt={`Thumbnail ${idx}`}
+                            fill
+                            className="object-cover"
+                          />
+                          {/* Overlay for unselected items */}
+                          {selectedPhoto !== src && (
+                            <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors" />
+                          )}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
             </div>
           )}
 
-          {/* LOVE STORY */}
-          <div className="space-y-6">
-            <h2 className="text-center text-2xl font-serif text-slate-800">
-              Kisah Cinta
+          {/* Our Footage */}
+          <div className="w-full space-y-6">
+            <h2 className="text-center text-2xl font-bricolage text-slate-800">
+              Our Footage
             </h2>
-            <Accordion type="single" collapsible className="w-full">
-              {loveStories.map((story, idx) => (
-                <AccordionItem key={idx} value={`item-${idx}`}>
-                  <AccordionTrigger className="text-slate-800 hover:text-rose-500 hover:no-underline px-2">
-                    {story.title}
-                  </AccordionTrigger>
-                  <AccordionContent className="text-slate-600 italic px-4 pb-4">
-                    {story.content}
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
+
+            <div className="w-full ">
+              <HeroVideoDialog
+                animationStyle="from-center"
+                videoSrc="https://youtube.com/embed/_PxYkc0JWXs?si=0KrAYECzciQ95HS0"
+                thumbnailSrc="https://startup-template-sage.vercel.app/hero-light.png"
+                thumbnailAlt="Dummy Video Thumbnail"
+              />
+            </div>
           </div>
 
           <Separator />
@@ -431,7 +451,7 @@ export default function WeddingTemplate({
           {/* GIFT SECTION */}
           <div className="text-center space-y-8">
             <div className="space-y-2">
-              <h2 className="text-2xl font-serif text-slate-800">
+              <h2 className="text-2xl font-bricolage text-slate-800">
                 Tanda Kasih
               </h2>
               <p className="text-sm text-slate-500 leading-relaxed">
@@ -483,7 +503,7 @@ export default function WeddingTemplate({
 
           {/* RSVP FORM */}
           <div id="rsvp" className="space-y-6 scroll-mt-24">
-            <h2 className="text-center text-2xl font-serif text-slate-800">
+            <h2 className="text-center text-2xl font-bricolage text-slate-800">
               Konfirmasi Kehadiran
             </h2>
             <Card>
@@ -532,7 +552,7 @@ export default function WeddingTemplate({
 
           {/* WISHES FORM */}
           <div className="space-y-6">
-            <h2 className="text-center text-2xl font-serif text-slate-800">
+            <h2 className="text-center text-2xl font-bricolage text-slate-800">
               Kirim Ucapan
             </h2>
             <Card>
@@ -583,7 +603,7 @@ export default function WeddingTemplate({
 
           {/* FOOTER */}
           <footer className="text-center space-y-2 py-8">
-            <p className="text-xl font-serif text-slate-800">
+            <p className="text-xl font-bricolage text-slate-800">
               {data.groomNickname} & {data.brideNickname}
             </p>
             <div className="text-xs text-slate-400">
