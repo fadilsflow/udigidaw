@@ -18,30 +18,16 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-import {
   CalendarHeart,
   MapPin,
-  Clock,
   Copy,
   Heart,
-  Quote,
   HeartHandshake,
   CalendarDays,
   HomeIcon,
   ImageIcon,
   MessageCircle,
+  Instagram,
 } from "lucide-react";
 import {
   getDayName,
@@ -236,17 +222,32 @@ export default function WeddingTemplate({
         </div>
 
         {/* MAIN CONTENT CONTAINER */}
-        <div className="flex flex-col gap-10 p-6 md:p-10 pb-20">
-          {/* COUPLE DETAILS */}
-          <div id="couple" className="space-y-8 scroll-mt-24">
-            <h2 className="text-center text-2xl font-bricolage text-slate-800">
-              Mempelai
+        <div className=" flex flex-col gap-10 p-6 md:p-10 pb-20">
+          <div id="quotes" className="space-y-8 mt-24">
+            <h2 className="text-center text-3xl  font-bricolage text-slate-800">
+              Two souls interwined, <br /> a live that will bind
             </h2>
-            <div className="flex items-center justify-center gap-4 ">
+            <p className="text-center text-slate-800">
+              They say that some souls are simply meant to find each other. Ours
+              did, and with each shared moment, our connection has grown into a
+              love that will forever bind us. We are so excited to celebrate
+              this beautiful journey with you as we exchange our vows.
+            </p>
+          </div>
+
+          {/* COUPLE DETAILS */}
+          <div id="couple" className="space-y-8 mt-24">
+            {/* <h2 className="text-center text-2xl font-bricolage text-slate-800">
+              Mempelai
+            </h2> */}
+            <div className="flex flex-col items-center justify-center gap-4 ">
               <div className="overflow-hidden ">
-                <div className="text-center pb-2 flex flex-col items-center">
+                <div className="text-center gap-4 flex flex-col items-center">
+                  <h2 className="font-bricolage text-5xl">
+                    {data.groomNickname}
+                  </h2>
                   {data.groomImage && (
-                    <div className="mb-4 relative w-50 h-50 rounded overflow-hidden border-4  shadow-sm">
+                    <div className="mb-4 relative w-130 h-150 rounded overflow-hidden border-4  shadow-sm">
                       <Image
                         src={data.groomImage}
                         alt={data.groomNickname}
@@ -255,21 +256,27 @@ export default function WeddingTemplate({
                       />
                     </div>
                   )}
-                  <h2 className="font-bricolage text-2xl">
-                    {data.groomNickname}
-                  </h2>
-                  <p>{data.groomName}</p>
+
+                  <p className="text-2xl font-bricolage mb-5">
+                    {data.groomName}
+                  </p>
                   <p>
                     Putra dari {data.groomParents?.father || "Bpk. Fulan"} &{" "}
                     {data.groomParents?.mother || "Ibu Fulanah"}
                   </p>
+                  <Button>
+                    <Instagram /> @{data.groomNickname}
+                  </Button>
                 </div>
               </div>
 
               <div className="overflow-hidden ">
-                <div className="text-center pb-2 flex flex-col items-center">
+                <div className="text-center gap-4 flex flex-col items-center">
+                  <h2 className="font-bricolage text-5xl">
+                    {data.brideNickname}
+                  </h2>
                   {data.brideImage && (
-                    <div className="mb-4 relative w-50 h-50 rounded overflow-hidden border-4 border-rose-100 shadow-sm">
+                    <div className="mb-4 relative w-130 h-150 rounded overflow-hidden border-4 border-rose-100 shadow-sm">
                       <Image
                         src={data.brideImage}
                         alt={data.brideNickname}
@@ -278,14 +285,17 @@ export default function WeddingTemplate({
                       />
                     </div>
                   )}
-                  <h2 className="font-bricolage text-2xl">
-                    {data.brideNickname}
-                  </h2>
-                  <p>{data.brideName}</p>
+
+                  <p className="text-2xl font-bricolage mb-5">
+                    {data.brideName}
+                  </p>
                   <p>
                     Putri dari {data.brideParents?.father || "Bpk. Fulan"} &{" "}
                     {data.brideParents?.mother || "Ibu Fulanah"}
                   </p>
+                  <Button>
+                    <Instagram /> @{data.brideNickname}
+                  </Button>
                 </div>
               </div>
             </div>
@@ -452,12 +462,12 @@ export default function WeddingTemplate({
           <div className="text-center space-y-8">
             <div className="space-y-2">
               <h2 className="text-2xl font-bricolage text-slate-800">
-                Tanda Kasih
+                Wedding Gift
               </h2>
               <p className="text-sm text-slate-500 leading-relaxed">
-                Doa restu Anda merupakan karunia yang sangat berarti bagi kami.
-                Dan jika memberi adalah ungkapan tanda kasih Anda, Anda dapat
-                memberi kado secara cashless.
+                Your prayers and presence are the best gift. However, if you
+                want to give a gift weprovide a digital envelope to make it
+                easier for you. Thank You
               </p>
             </div>
 
@@ -470,12 +480,11 @@ export default function WeddingTemplate({
                   name: data.brideNickname,
                 },
               ].map((item, idx) => (
-                <Card
+                <div
                   key={idx}
                   className="relative overflow-hidden border-slate-200"
                 >
-                  <div className="absolute top-0 left-0 w-1 h-full bg-slate-800"></div>
-                  <CardContent className="p-6 flex flex-col items-center gap-2">
+                  <div className="p-6 flex flex-col items-center gap-2">
                     <h3 className="font-bold text-lg text-slate-800">
                       {item.bank}
                     </h3>
@@ -493,8 +502,8 @@ export default function WeddingTemplate({
                       </Button>
                     </div>
                     <p className="text-sm text-slate-500">a.n {item.name}</p>
-                  </CardContent>
-                </Card>
+                  </div>
+                </div>
               ))}
             </div>
           </div>
